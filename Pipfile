@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+ansible = "==2.9.15"
+molecule = "==2.22"
+pywinrm = "*"
+ansible-lint = "*"
+pyvmomi = "==6.7.3"
+
+[requires]
+python_version = "3.7"
