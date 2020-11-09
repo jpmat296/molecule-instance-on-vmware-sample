@@ -3,15 +3,13 @@ dependency:
   name: galaxy
 driver:
   name: delegated
-  hostname: vCenter IP or hostname
+  hostname: vsphere.matsusoft.com
   username: administrator@vsphere.local
-  password: password
   validate_certs: false
-  datacenter: datacenter name
-  esxi_hostname: esxi hostname
-  folder: folder path(ex: /vm)
-  vm_username: username for guest os
-  vm_password: password for guest os
+  datacenter: Datacenter1
+  esxi_hostname: barney.matsusoft.com
+  folder: /
+  vm_username: Administrator
   connection: winrm
   port: 5986
   winrm_transport: ntlm
@@ -20,16 +18,22 @@ lint:
   name: yamllint
 platforms:
   - name: instance
-    template: template name
-    snapshot_src: snapshot for template
+    template: windows-base-win2019
+    snapshot_src: Clean updated minimal install
     memory_mb: 4096
     cpus: 2
     network: VM Network
-    datastore: datastore name
+    datastore: MX500_1TB
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  inventory:
+    links:
+      host_vars: ../../../../host_vars/
+  config_options:
+    defaults:
+      vault_password_file: /usr/local/bin/op-vault
   log: true
 verifier:
   name: testinfra

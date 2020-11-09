@@ -5,6 +5,7 @@
   gather_facts: false
   no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log | default(false) | bool) }}"
   tasks:
+    - import_tasks: use_hostvars_tasks.yml
     - name: Gather fact from molecule instance(s).
       vmware_guest_facts:
         hostname: "{{ molecule_yml.driver.hostname }}"
