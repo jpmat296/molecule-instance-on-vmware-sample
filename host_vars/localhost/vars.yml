@@ -1,0 +1,3 @@
+---
+vcenter_password: "{{ vault_vcenter_password }}"
+guest_userpassword: "{{ vault_guest_userpassword }}"
