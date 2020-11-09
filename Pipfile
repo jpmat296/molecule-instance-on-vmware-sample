@@ -11,6 +11,8 @@ molecule = "==2.22"
 pywinrm = "*"
 ansible-lint = "*"
 pyvmomi = "==6.7.3"
+typing-extensions = "*"
+pyopenssl = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
