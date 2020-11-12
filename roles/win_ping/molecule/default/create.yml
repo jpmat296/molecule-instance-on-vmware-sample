@@ -58,7 +58,7 @@
       openssl_privatekey:
         path: "{{ certificate_path }}/server.key"
         passphrase: "{{ molecule_yml.driver.vm_password }}"
-        cipher: aes256
+        cipher: auto
         size: 4096
 
     - name: Generate an OpenSSL certificate signing request.
