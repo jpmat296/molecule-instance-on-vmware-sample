@@ -14,8 +14,10 @@ driver:
   port: 5986
   winrm_transport: ntlm
   winrm_server_cert_validation: ignore
-lint:
-  name: yamllint
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
 platforms:
   - name: instance
     template: windows-base-win2019
@@ -26,8 +28,6 @@ platforms:
     datastore: MX500_1TB
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
   inventory:
     links:
       host_vars: ../../../../host_vars/
@@ -37,5 +37,3 @@ provisioner:
   log: true
 verifier:
   name: testinfra
-  lint:
-    name: flake8

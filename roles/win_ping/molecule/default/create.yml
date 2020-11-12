@@ -46,13 +46,15 @@
       file:
         path: "{{ powershell_script }}"
         state: directory
+        mode: 0755
 
     - name: Create for certificate save directory.
       file:
         path: "{{ certificate_path }}"
         state: directory
+        mode: 0755
 
-    - name: Generate an OpenSSL private key. 
+    - name: Generate an OpenSSL private key.
       openssl_privatekey:
         path: "{{ certificate_path }}/server.key"
         passphrase: "{{ molecule_yml.driver.vm_password }}"
@@ -100,6 +102,7 @@
       template:
         src: templates/import_winrm_certificate.j2
         dest: "{{ powershell_script }}/{{ item.name }}.ps1"
+        mode: 0644
       loop: "{{ molecule_yml.platforms }}"
 
     - name: Copy pfx file to vm.
@@ -175,6 +178,7 @@
         #               https://github.com/ansible/ansible/issues/20885
         content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
         dest: "{{ molecule_instance_config }}"
+        mode: 0644
       when: server is changed
 
     - name: Wait for listening on 5986 port.

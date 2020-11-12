@@ -13,8 +13,11 @@ driver:
   options:
     ansible_connection_options:
       connection: ssh
-lint:
-  name: yamllint
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
 platforms:
   - name: instance
     template: linux-base-ubuntu16
@@ -34,5 +37,3 @@ provisioner:
   log: true
 verifier:
   name: testinfra
-  lint:
-    name: flake8
