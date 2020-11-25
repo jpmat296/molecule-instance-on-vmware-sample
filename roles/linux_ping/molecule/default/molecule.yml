@@ -3,16 +3,7 @@ dependency:
   name: galaxy
 driver:
   name: delegated
-  hostname: vsphere.matsusoft.com
-  username: administrator@vsphere.local
-  validate_certs: false
-  datacenter: Datacenter1
-  esxi_hostname: barney.matsusoft.com
-  folder: /
   vm_username: jpmat
-  options:
-    ansible_connection_options:
-      connection: ssh
 lint: |
   set -e
   yamllint .
@@ -28,12 +19,6 @@ platforms:
     datastore: MX500_1TB
 provisioner:
   name: ansible
-  inventory:
-    links:
-      host_vars: ../../../../host_vars/
-  config_options:
-    defaults:
-      vault_password_file: /usr/local/bin/op-vault
   log: true
 verifier:
   name: testinfra

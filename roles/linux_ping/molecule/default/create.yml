@@ -36,7 +36,7 @@
         datastore: "{{ item.datastore }}"
         customization:
           hostname: "{{ item.name }}"
-        wait_for_ip_address: "yes"
+        wait_for_ip_address: yes
         wait_for_customization: yes
         state: poweredon
       register: server
