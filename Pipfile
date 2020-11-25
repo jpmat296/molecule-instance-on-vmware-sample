@@ -6,11 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-ansible = "==2.9.15"
-molecule = "==3.0.*"
+ansible = "==2.10.*"
+molecule = "==3.2.*"
 pywinrm = "*"
 ansible-lint = "*"
-pyvmomi = "==6.7.3"
+pyvmomi = "*"
 typing-extensions = "*"
 pyopenssl = "*"
 flake8 = "*"
