@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 ansible = "==2.9.15"
-molecule = "==3.*"
+molecule = "==3.0.*"
 pywinrm = "*"
 ansible-lint = "*"
 pyvmomi = "==6.7.3"
