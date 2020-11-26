@@ -7,7 +7,6 @@
   vars:
     keypair_path: "{{ lookup('env','MOLECULE_EPHEMERAL_DIRECTORY') }}/ssh_key"
   tasks:
-    - import_tasks: use_hostvars_tasks.yml
     - name: Create keypair.
       user:
         name: "{{ lookup('env','USER') }}"

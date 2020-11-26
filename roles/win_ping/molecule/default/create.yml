@@ -10,7 +10,6 @@
     windows_save_path: C:\Users\Administrator\Desktop
     powershell_absolute_path: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
   tasks:
-    - import_tasks: use_hostvars_tasks.yml
     - name: Create molecule instance(s).
       vmware_guest:
         hostname: "{{ molecule_yml.driver.hostname }}"
