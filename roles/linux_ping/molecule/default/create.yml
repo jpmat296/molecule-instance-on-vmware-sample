@@ -7,11 +7,9 @@
   vars:
     keypair_path: "{{ lookup('env','MOLECULE_EPHEMERAL_DIRECTORY') }}/ssh_key"
   tasks:
-    - name: Create keypair.
-      user:
-        name: "{{ lookup('env','USER') }}"
-        generate_ssh_key: true
-        ssh_key_file: "{{ keypair_path }}"
+    - name: Generate SSH keypair
+      community.crypto.openssh_keypair:
+        path: "{{ keypair_path }}"
       register: keypair_result
 
     - name: Create molecule instance(s).
@@ -53,7 +51,7 @@
         vm_username: "{{ molecule_yml.driver.vm_username }}"
         vm_password: "{{ molecule_yml.driver.vm_password }}"
         vm_shell: /bin/bash
-        vm_shell_args: "-c 'mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo {{ keypair_result.ssh_public_key }} > ~/.ssh/authorized_keys'"
+        vm_shell_args: "-c 'mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo {{ keypair_result.public_key }} > ~/.ssh/authorized_keys'"
         wait_for_process: true
       with_items: "{{ molecule_yml.platforms }}"
 
