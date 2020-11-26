@@ -25,6 +25,5 @@ platforms:
     datastore: MX500_1TB
 provisioner:
   name: ansible
-  log: true
 verifier:
   name: testinfra
