@@ -3,7 +3,8 @@
   hosts: localhost
   connection: local
   gather_facts: false
-  no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log | default(false) | bool) }}"
+  no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log
+              | default(false) | bool) }}"
   vars:
     certificate_path: "{{ lookup('env','MOLECULE_EPHEMERAL_DIRECTORY') }}/certificate"
     powershell_script: "{{ lookup('env','MOLECULE_EPHEMERAL_DIRECTORY') }}/powershell"
@@ -21,7 +22,7 @@
         folder: "{{ molecule_yml.driver.folder }}"
         name: "{{ item.name }}"
         template: "{{ item.template }}"
-        linked_clone: yes
+        linked_clone: true
         snapshot_src: "{{ item.snapshot_src }}"
         hardware:
           memory_mb: "{{ item.memory_mb }}"
@@ -31,12 +32,12 @@
         datastore: "{{ item.datastore }}"
         customization:
           hostname: "{{ item.name }}"
-          autlogon: no
+          autlogon: false
           fullname: molecule
           orgname: molecule
           password: "{{ molecule_yml.driver.vm_password }}"
-        wait_for_ip_address: yes
-        wait_for_customization: yes
+        wait_for_ip_address: true
+        wait_for_customization: true
         state: poweredon
       register: server
       with_items: "{{ molecule_yml.platforms }}"
@@ -117,7 +118,7 @@
         copy:
           src: "{{ certificate_path }}/{{ item.name }}.pfx"
           dest: "{{ windows_save_path }}\\{{ item.name }}.pfx"
-          overwrite: yes
+          overwrite: true
       loop: "{{ molecule_yml.platforms }}"
 
     - name: Copy powershell script to vm.
@@ -133,7 +134,7 @@
         copy:
           src: "{{ powershell_script }}/{{ item.name }}.ps1"
           dest: "{{ windows_save_path }}\\{{ item.name }}.ps1"
-          overwrite: yes
+          overwrite: true
       loop: "{{ molecule_yml.platforms }}"
 
     - name: Enable WinRM HTTPS.
@@ -168,7 +169,8 @@
 
     - name: Convert instance config dict to a list.
       set_fact:
-        instance_conf: "{{ instance_config_dict.results | map(attribute='ansible_facts.instance_conf_dict') | list }}"
+        instance_conf: "{{ instance_config_dict.results
+                           | map(attribute='ansible_facts.instance_conf_dict') | list }}"
       when: server is changed
 
     - name: Dump instance config.
