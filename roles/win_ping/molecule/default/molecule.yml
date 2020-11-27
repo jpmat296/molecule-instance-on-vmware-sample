@@ -19,7 +19,7 @@ platforms:
   - name: instance
     template: windows-base-win2019
     snapshot_src: Clean updated minimal install
-    memory_mb: 4096
+    memory_mb: 2048
     cpus: 2
     network: VM Network
     datastore: MX500_1TB
