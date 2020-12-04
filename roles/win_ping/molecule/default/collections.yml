@@ -1,3 +1,6 @@
 ---
 collections:
+  # This tar.gz contains a fix for defender
+  - name: "https://github.com/jpmat296/ansible.windows/releases/download\
+           /jpm1/sbaerlocher-windows-0.0.7.tar.gz"
   - community.molecule
