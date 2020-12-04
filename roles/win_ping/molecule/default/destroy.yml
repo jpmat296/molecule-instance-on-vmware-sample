@@ -7,7 +7,7 @@
               | default(false) | bool) }}"
   tasks:
     - name: Gather fact from molecule instance(s).
-      vmware_guest_facts:
+      vmware_guest_info:
         hostname: "{{ molecule_yml.driver.hostname }}"
         username: "{{ molecule_yml.driver.username }}"
         password: "{{ molecule_yml.driver.password }}"

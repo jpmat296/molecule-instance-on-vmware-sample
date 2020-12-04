@@ -1,9 +1,6 @@
 ---
 dependency:
   name: galaxy
-  options:
-    role-file: molecule/default/requirements.yml
-    requirements-file: molecule/default/requirements.yml
 driver:
   name: delegated
   vm_username: Administrator
@@ -26,4 +23,4 @@ platforms:
 provisioner:
   name: ansible
 verifier:
-  name: testinfra
+  name: ansible

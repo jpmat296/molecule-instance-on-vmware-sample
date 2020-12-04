@@ -1,6 +1,2 @@
 ---
 roles: {}
-
-collections:
-  - community.molecule
-  - community.crypto
