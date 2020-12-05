@@ -10,7 +10,7 @@ lint: |
   ansible-lint
   flake8
 platforms:
-  - name: instance
+  - name: inst-lin-${BUILD_NUMBER:-000}
     template: linux-base-ubuntu16
     snapshot_src: Clean updated minimal install
     memory_mb: 2048
