@@ -42,7 +42,8 @@ def executeToxEnvironment(String toxEnv) {
             bash ~/bin/vms_destroy.sh || true
             source /usr/local/pyenv/.pyenvrc
             cd molecule-instance-on-vmware-sample
-            tox --workdir .tox -e $toxEnv
+            { tox --workdir .tox -e ${toxEnv} | tee ${toxEnv}.log; } || true
+            grep "Failed to connect to the host via ssh" ${toxEnv}.log
           """
         }
       } finally {
